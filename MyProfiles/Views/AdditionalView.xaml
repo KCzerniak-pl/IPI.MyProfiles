@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="MyProfiles.Views.AdditionalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+             mc:Ignorable="d"         
+             md:DialogServiceViews.IsRegistered="True"
+             DataContext="{Binding Source={StaticResource ResourceKey=Locator}, Path=Additional}">
+
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Column="0" Width="150" IsChecked="{Binding Path=DefaultPrinterIsChecked}">
+                <Label IsEnabled="{Binding Path=DefaultPrinterIsChecked}">Default printer:</Label>
+            </CheckBox>
+            <ComboBox Grid.Column="1" IsEnabled="{Binding Path=DefaultPrinterIsChecked}" ItemsSource="{Binding Path=InstalledPrintersList}" materialDesign:HintAssist.Hint="Select printer" SelectedItem="{Binding Path=SelectedDefaultPrinter, Mode=TwoWay}"/>
+        </Grid>
+
+        <Grid Margin="0 25 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Column="0" Width="150" IsChecked="{Binding Path=ComputerNameIsChecked}">
+                <Label IsEnabled="{Binding Path=ComputerNameIsChecked}">Computer name:</Label>
+            </CheckBox>
+            <TextBox Grid.Column="1" IsEnabled="{Binding Path=ComputerNameIsChecked}" Padding="4" MaxLength="15" Text="{Binding Path=ComputerName, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="2" IsEnabled="{Binding Path=ComputerNameIsChecked}" Width="25" Height="25" Margin="20 0 0 0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="LightGray" ToolTip="Get current settings" Command="{Binding Path=GetComputerNameCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeftBoldBoxOutline" Width="20" Height="20"/>
+            </Button>
+        </Grid>
+
+        <Button Height="35" Margin="0 25 0 0" Padding="0" Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding Path=SaveCommand}">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="ContentSaveOutline" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center">Save</Label>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</UserControl>
+
+

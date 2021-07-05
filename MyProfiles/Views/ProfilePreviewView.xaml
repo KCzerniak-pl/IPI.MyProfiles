@@ -1,0 +1,46 @@
+﻿<Window x:Class="MyProfiles.Views.ProfilePreviewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
+        xmlns:local="clr-namespace:MyProfiles.Views.Dialogs"     
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Width="370" SizeToContent="Height"
+        WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource ResourceKey=Locator}, Path=ProfilePreview}">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="0" CaptionHeight="{Binding ActualHeight, ElementName=TitleBar}"/>
+    </WindowChrome.WindowChrome>
+
+    <Border BorderThickness="1" BorderBrush="#FFAB91">
+        <StackPanel>
+            <Border BorderThickness="0 0 0 1" BorderBrush="#FF222222">
+                <StackPanel x:Name="TitleBar" Height="20" Background="#FF5722" VerticalAlignment="Bottom" MouseLeftButtonDown="TopBar_MouseLeftButtonDown">
+                    <Label Padding="5 3" HorizontalAlignment="Left" FontWeight="Medium" Content="Profile Preview"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Margin="10 0 10 0">
+                <TextBlock Margin="0 15 0 0" TextWrapping="Wrap" Text="{Binding Path=PathFile}"/>
+
+                <ScrollViewer Height="240" Margin="0 15 0 0" HorizontalScrollBarVisibility="Visible">
+                    <TextBlock Text="{Binding Path=ProfilePreview}"/>
+                </ScrollViewer>
+
+                <StackPanel Margin="0 15 0 15" HorizontalAlignment="Right">
+                    <Button Width="120" Height="35" Padding="0" Style="{StaticResource MaterialDesignRaisedLightButton}" IsCancel="True">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Check" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                            <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center" Content="Close"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

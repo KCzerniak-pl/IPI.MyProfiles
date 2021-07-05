@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="MyProfiles.Views.ManageProfilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"   
+             mc:Ignorable="d"
+             md:DialogServiceViews.IsRegistered="True"
+             DataContext="{Binding Source={StaticResource ResourceKey=Locator}, Path=ManageProfiles}">
+
+    <StackPanel>
+        <ComboBox ItemsSource="{Binding Path=ProfilesList}" DisplayMemberPath="Name" materialDesign:HintAssist.Hint="Select profile" SelectedItem="{Binding Path=SelectedProfile, Mode=OneWayToSource}"/>
+
+        <StackPanel Margin="0 25 0 0">
+            <Button Height="35" Padding="0" Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding Path=NewProfileCommnad}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FileOutline" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                    <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center">Create new profile</Label>
+                </StackPanel>
+            </Button>
+            <Button Height="35" Margin="0 10 0 0" Padding="0" Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding Path=RenameProfileCommnad}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FileReplaceOutline" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                    <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center">Rename selected profile</Label>
+                </StackPanel>
+            </Button>
+            <Button Height="35" Margin="0 10 0 0" Padding="0" Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding Path=RemoveProfileCommnad}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FileRemoveOutline" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                    <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center">Remove selected profile</Label>
+                </StackPanel>
+            </Button>
+
+            <Button Height="35" Margin="0 35 0 0" Padding="0" Command="{Binding Path=ActivateProfileCommnad}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FileCheckOutline" VerticalAlignment="Center" Height="20" Width="20" Foreground="White"/>
+                    <Label Margin="5 0 0 0" Padding="0" VerticalContentAlignment="Center">Activate selected profile</Label>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Margin="0 25 0 0" HorizontalAlignment="Right">
+            <Button Width="25" Height="25" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="LightGray" ToolTip="Profile preview" Command="{Binding Path=ProfilePreviewCommand}">
+                <materialDesign:PackIcon Kind="OpenInNew" Width="20" Height="20"/>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
