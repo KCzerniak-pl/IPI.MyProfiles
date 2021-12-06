@@ -50,7 +50,7 @@
                     <ListViewItem Height="60" IsSelected="True">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ClipboardCheckMultipleOutline" Width="25" Height="25" Margin="10 0 0 0"/>
-                            <TextBlock Margin="15 0 0 0" VerticalAlignment="Center" FontSize="18" Text="Manage profiless"/>
+                            <TextBlock Margin="15 0 0 0" VerticalAlignment="Center" FontSize="18" Text="Manage profiles"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60" IsEnabled="{Binding Path=IsSelectedProfile}">
